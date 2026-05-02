@@ -20,7 +20,7 @@ TEXT_FILE = Path("page_content.txt")
 def run() -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        context = browser.new_context()
+        context = browser.new_context(ignore_https_errors=True)
         page = context.new_page()
 
         page.goto(URL, wait_until="networkidle")
